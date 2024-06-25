@@ -130,6 +130,6 @@ percent.addEventListener('click', () => {
   ) {
     input.textContent = input.textContent;
   } else {
-    input.textContent = input.textContent + '/100';
+    input.textContent = eval(input.textContent + '/100');
   }
 });
