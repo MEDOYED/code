@@ -19,6 +19,8 @@ body {
   line-height: 75px;
   margin: 0 22px 9px 0;
   text-align: right;
+  max-width: 345px;
+  overflow: hidden;
 }
 
 .calculator__line {

@@ -55,7 +55,6 @@ const buttons = [
   zero,
   plus,
   minus,
-  percent,
 ];
 
 buttons.forEach(button => {
@@ -116,5 +115,21 @@ changeSign.addEventListener('click', () => {
     input.textContent = '-' + input.textContent;
   } else {
     input.textContent = input.textContent * -1;
+  }
+});
+
+//percent
+percent.addEventListener('click', () => {
+  if (input.textContent == 0) {
+    input.textContent = '0';
+  } else if (
+    input.textContent.includes('+') ||
+    input.textContent.includes('-') ||
+    input.textContent.includes('/') ||
+    input.textContent.includes('*')
+  ) {
+    input.textContent = input.textContent;
+  } else {
+    input.textContent = input.textContent + '/100';
   }
 });
