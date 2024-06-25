@@ -32,6 +32,7 @@ eight.textContent = 8;
 nine.textContent = 9;
 zero.textContent = 0;
 percent.textContent = "%";
+// multiply.textContent = '/';
 
 const writeInInput = function (e) {
   if (input.textContent == 0) {
@@ -39,17 +40,81 @@ const writeInInput = function (e) {
   } else {
     input.textContent = input.textContent + e.textContent;
   }
-}
+};
 
-const buttons = [one, two, three, four, five, six, seven, eight, nine, zero, comma, plus, minus, percent, divide, multiply];
+const buttons = [
+  one,
+  two,
+  three,
+  four,
+  five,
+  six,
+  seven,
+  eight,
+  nine,
+  zero,
+  plus,
+  minus,
+  percent,
+];
 
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
-        writeInInput(button);
-    });
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    writeInInput(button);
+  });
 });
 
-equal.addEventListener('click', () => {
+equal.addEventListener("click", () => {
   input.textContent = eval(input.textContent);
-})
+});
 
+const writeInInputSymbol = function (symbol) {
+  if (input.textContent == 0) {
+    input.textContent = symbol;
+  } else {
+    input.textContent = input.textContent + symbol;
+  }
+};
+
+//   multyply
+multiply.addEventListener("click", () => {
+  if (input.textContent == 0) {
+    input.textContent = "*";
+  } else {
+    input.textContent = input.textContent + "*";
+  }
+});
+
+// devide
+divide.addEventListener("click", () => {
+  if (input.textContent == 0) {
+    input.textContent = "/";
+  } else {
+    input.textContent = input.textContent + "/";
+  }
+});
+
+// comma
+comma.addEventListener("click", () => {
+  if (input.textContent == 0) {
+    input.textContent = ".";
+  } else {
+    input.textContent = input.textContent + ".";
+  }
+});
+
+// AC / buttonClear
+clear.addEventListener("click", () => {
+  input.textContent = 0;
+});
+
+// changeSign
+changeSign.addEventListener('click', () => {
+  if (input.textContent == 0) {
+    input.textContent = 0;
+  } else if (input.textContent > 0) {
+    input.textContent = '-' + input.textContent;
+  } else {
+    input.textContent =  input.textContent * (-1);
+  }
+});
