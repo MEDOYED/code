@@ -63,8 +63,14 @@ buttons.forEach(button => {
   });
 });
 
+//equal
 equal.addEventListener('click', () => {
   input.textContent = eval(input.textContent);
+
+  if (eval(input.textContent) === Infinity) {
+    const errorDivisionByZero = 'Помилка';
+    input.textContent = errorDivisionByZero;
+  }
 });
 
 const writeInInputSymbol = function (symbol) {
@@ -133,3 +139,5 @@ percent.addEventListener('click', () => {
     input.textContent = eval(input.textContent + '/100');
   }
 });
+
+// division by 0
