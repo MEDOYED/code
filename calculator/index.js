@@ -20,23 +20,11 @@ const zero = document.querySelector('.button__zero');
 const comma = document.querySelector('.button__comma');
 const equal = document.querySelector('.button__equal');
 
-input.textContent = 0;
-one.textContent = 1;
-two.textContent = 2;
-three.textContent = 3;
-four.textContent = 4;
-five.textContent = 5;
-six.textContent = 6;
-seven.textContent = 7;
-eight.textContent = 8;
-nine.textContent = 9;
-zero.textContent = 0;
-percent.textContent = '%';
-// multiply.textContent = '/';
-
 const writeInInput = function (e) {
   if (input.textContent == 0) {
     input.textContent = e.textContent;
+  } else if (input.textContent === 'Number too large') {
+    input.textContent = input.textContent;
   } else {
     input.textContent = input.textContent + e.textContent;
   }
@@ -71,6 +59,11 @@ equal.addEventListener('click', () => {
     const errorDivisionByZero = 'Помилка';
     input.textContent = errorDivisionByZero;
   }
+
+  if (input.textContent.length >= 11) {
+    input.textContent = 'Number too large';
+    input.style.fontSize = '45px';
+  }
 });
 
 const writeInInputSymbol = function (symbol) {
@@ -83,7 +76,9 @@ const writeInInputSymbol = function (symbol) {
 
 //   multyply
 multiply.addEventListener('click', () => {
-  if (input.textContent == 0) {
+  if (input.textContent === 'Number too large') {
+    input.textContent = input.textContent;
+  } else if (input.textContent.includes('0')) {
     input.textContent = '*';
   } else {
     input.textContent = input.textContent + '*';
@@ -94,6 +89,8 @@ multiply.addEventListener('click', () => {
 divide.addEventListener('click', () => {
   if (input.textContent == 0) {
     input.textContent = '/';
+  } else if (input.textContent === 'Number too large') {
+    input.textContent = input.textContent;
   } else {
     input.textContent = input.textContent + '/';
   }
@@ -103,6 +100,8 @@ divide.addEventListener('click', () => {
 comma.addEventListener('click', () => {
   if (input.textContent == 0) {
     input.textContent = '.';
+  } else if (input.textContent === 'Number too large') {
+    input.textContent = input.textContent;
   } else {
     input.textContent = input.textContent + '.';
   }
@@ -111,6 +110,7 @@ comma.addEventListener('click', () => {
 // AC / buttonClear
 clear.addEventListener('click', () => {
   input.textContent = 0;
+  input.style.fontSize = '64px';
 });
 
 // changeSign
@@ -139,5 +139,3 @@ percent.addEventListener('click', () => {
     input.textContent = eval(input.textContent + '/100');
   }
 });
-
-// division by 0
