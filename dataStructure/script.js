@@ -1,26 +1,5 @@
 'use strict';
 
-const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-
-const workingHours = {
-  [weekdays[2]]: {
-    open: 10,
-    close: 23,
-  },
-  [weekdays[4]]: {
-    open: 10,
-    close: 23,
-  },
-  [weekdays[5]]: {
-    open: 0,
-    close: 24,
-  },
-  [weekdays[6]]: {
-    open: 12,
-    close: 23,
-  },
-};
-
 const japaneseRestaurant = {
   name: 'Banzai',
   location: '108 Markham Woods Rd, Longwood, USA',
@@ -28,32 +7,228 @@ const japaneseRestaurant = {
   appetizers: ['Seaweed salad', 'Tempura shrimp', 'Edamame', 'Sushi rice'],
   mainMenu: ['Sushi', 'Ramen', 'Tempura'],
 
-  // Enhanced syntax of ES6 object literals
-  workingHours,
+  workingHours: {
+    wed: {
+      open: 10,
+      close: 23,
+    },
+    fri: {
+      open: 10,
+      close: 23,
+    },
+    sun: {
+      open: 12,
+      close: 23,
+    },
+  },
 
-  orderFood(appetizersIndex, mainMenuIndex) {
+  orderFood: function (appetizersIndex, mainMenuIndex) {
     return [this.appetizers[appetizersIndex], this.mainMenu[mainMenuIndex]];
   },
-  foodDelivery({
+
+  foodDelivery: function ({
     mainMenuIndex = 0,
     appetizersIndex = 0,
     address,
     deliveryTime = '18:00',
   }) {
     console.log(
-      `Your order on the way to you! ${this.appetizers[appetizersIndex]} and ${this.mainMenu[mainMenuIndex]} will be arrived to ${address} at ${deliveryTime}.`
+      `Your order on the way to you! ${this.appetizers[appetizersIndex]}, and ${this.mainMenu[mainMenuIndex]} will be arrived to ${address} at ${deliveryTime}.`
     );
   },
 
-  orderSushi(ing1, ing2, ing3) {
-    console.log(`You have ordered sushi with ${ing1}, ${ing2}, ${ing3}`);
-  },
-
-  orderRamen(noodle, ...otherIngs) {
-    console.log(noodle);
-    console.log(otherIngs);
+  orderSushi: function (ing1, ing2, ing3) {
+    console.log(`You are ordered sushi with ${ing1}, ${ing2}, ${ing3}`);
   },
 };
+
+
+// const arr = [1, 3, 5];
+
+// // old bad aproach
+// const newArr = [7, 9, arr[0], arr[1], arr[2]];
+// console.log(newArr);
+
+// //New aproach with spread operator
+// const newArrSpread = [7, 9, ...newArr];
+// console.log(newArrSpread);
+
+// const newMenu = [...japaneseRestaurant.mainMenu, 'Miso Salmon'];
+// console.log(newMenu);
+// console.log(...newMenu);
+
+// // array copying
+// const categoriesCopy = [...japaneseRestaurant.categories];
+
+// //merge arrays
+// const menu = [...japaneseRestaurant.appetizers, ...japaneseRestaurant.mainMenu];
+// console.log(menu);
+
+// // iteable - arrays, strings, maps, sets. OBJECTS AREN'T ITERABLE.
+
+// //spread operator with strings
+// const greeting = 'Hey';
+// const greetingLetters = [...greeting, '!'];
+// console.log(greetingLetters);
+
+// const ingridients = [
+//   prompt(`Ingridient 1 for your sushi?`),
+//   prompt(`Ingridient 2 for your sushi?`),
+//   prompt(`Ingridient 3 for your sushi?`),
+// ];
+// console.log(ingridients);
+
+// japaneseRestaurant.orderSushi(...ingridients);
+
+// objects
+
+// const newJapaneseRestaurant = {foundationDate: 2011, ...japaneseRestaurant, owner: 'Suzuki'};
+
+// console.log(newJapaneseRestaurant);
+
+// const japaneseRestaurantCopy = {...japaneseRestaurant};
+// japaneseRestaurantCopy.name = 'Suzuki Sushi';
+
+// console.log(japaneseRestaurantCopy.name);
+// console.log(japaneseRestaurant.name);
+
+
+// //////////////////////////////////////////////////
+
+// japaneseRestaurant.foodDelivery({
+//   deliveryTime: '12:30',
+//   address: '108 Markham Woods Rd',
+//   mainMenuIndex: 1,
+//   appetizersIndex: 0,
+// });
+
+// japaneseRestaurant.foodDelivery({
+//   address: '18 Markham Woods Rd',
+// })
+
+/////////////////////////////////////////////////////////////////////////////////////////////
+// //destructuring objects
+// const { workingHours: hours, name: restName, categories } = japaneseRestaurant;
+// console.log(hours, restName, categories);
+
+// const { menu = [], appetizers: starterMenu = [] } = japaneseRestaurant;
+// console.log(menu, starterMenu);
+
+// // Mutating variables
+// let x = 3;
+// let y = 5;
+// const obj = { x: 11, y: 22, z: 33 };
+
+// ({ x, y } = obj);
+// console.log(x, y);
+
+// let {
+//   sun: { open, close },
+// } = hours;
+// console.log(open, close);
+
+// const {
+//   sun: { open: openHours, close: closeHours },
+// } = hours;
+
+// console.log(openHours, closeHours);
+
+// destructing objects
+
+// const arr = [3, 5, 7];
+// const x1 = arr[0];
+// const x2 = arr[1];
+// const x3 = arr[2];
+
+// const [y1, y2, y3] = arr;
+// console.log(y1, y2, y3);
+
+// const [a, b, c] = arr;
+// console.log(a, b, c);
+
+// let [main, , secondary] = japaneseRestaurant.categories;
+// console.log(main, secondary);
+
+// //swaping wariables
+
+// // const temp = main;
+// // main = secondary;
+// // secondary = temp;
+// // console.log(main, secondary);
+
+// [secondary, main] = [main, secondary];
+// console.log(main, secondary);
+
+// // console.log(japaneseRestaurant.orderFood(2, 1));
+
+// //returning 2 values from function
+// const [appetizer, mainFood] = japaneseRestaurant.orderFood(2, 1);
+// console.log(appetizer, mainFood);
+
+// // nestedArr
+// const nestedArr = [1, 2, [7, 9]];
+// const [f, , [d, e]] = nestedArr;
+// console.log(f, d, e);
+
+// // default values
+// const unknownArr = [3];
+// const [g=0, i=0, j=0] = unknownArr;
+// console.log(g, i, j);
+
+// const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// const workingHours = {
+//   [weekdays[2]]: {
+//     open: 10,
+//     close: 23,
+//   },
+//   [weekdays[4]]: {
+//     open: 10,
+//     close: 23,
+//   },
+//   [weekdays[5]]: {
+//     open: 0,
+//     close: 24,
+//   },
+//   [weekdays[6]]: {
+//     open: 12,
+//     close: 23,
+//   },
+// };
+
+// const japaneseRestaurant = {
+//   name: 'Banzai',
+//   location: '108 Markham Woods Rd, Longwood, USA',
+//   categories: ['Japanese', 'Sushi', 'Vegetarian', 'Organic'],
+//   appetizers: ['Seaweed salad', 'Tempura shrimp', 'Edamame', 'Sushi rice'],
+//   mainMenu: ['Sushi', 'Ramen', 'Tempura'],
+
+//   // Enhanced syntax of ES6 object literals
+//   workingHours,
+
+//   orderFood(appetizersIndex, mainMenuIndex) {
+//     return [this.appetizers[appetizersIndex], this.mainMenu[mainMenuIndex]];
+//   },
+//   foodDelivery({
+//     mainMenuIndex = 0,
+//     appetizersIndex = 0,
+//     address,
+//     deliveryTime = '18:00',
+//   }) {
+//     console.log(
+//       `Your order on the way to you! ${this.appetizers[appetizersIndex]} and ${this.mainMenu[mainMenuIndex]} will be arrived to ${address} at ${deliveryTime}.`
+//     );
+//   },
+
+//   orderSushi(ing1, ing2, ing3) {
+//     console.log(`You have ordered sushi with ${ing1}, ${ing2}, ${ing3}`);
+//   },
+
+//   orderRamen(noodle, ...otherIngs) {
+//     console.log(noodle);
+//     console.log(otherIngs);
+//   },
+// };
 
 ////////////////////////////////////////////////
 // Task 4
