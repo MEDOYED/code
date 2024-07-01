@@ -16,6 +16,10 @@ const japaneseRestaurant = {
       open: 10,
       close: 23,
     },
+    sat: {
+      open: 0,
+      close: 24,
+    },
     sun: {
       open: 12,
       close: 23,
@@ -40,8 +44,43 @@ const japaneseRestaurant = {
   orderSushi: function (ing1, ing2, ing3) {
     console.log(`You are ordered sushi with ${ing1}, ${ing2}, ${ing3}`);
   },
+
+  orderRamen: function(noodle, ...otherIngs) {
+    console.log(noodle);
+    console.log(otherIngs);
+  }
 };
 
+japaneseRestaurant.orderRamen('Colored Noodle', 'Meat', 'Chicken', 'Onion');
+
+// //rest patern with objects
+// const { sat, sun, ...weekdays } = japaneseRestaurant.workingHours;
+// console.log(sat, sun, weekdays);
+
+// const sum = function (...nums) {
+//   let sum = 0;
+//   for (let i = 0; i < nums.length; i++) {
+//     sum += nums[i];
+//   }
+//   console.log(sum);
+// };
+
+// sum(2, 5);
+// sum(1, 4, 7, 3);
+
+// const numbers = [3, 44, 2];
+
+// sum(...numbers)
+
+// const [a1, a2, ...items] = [1, 2, 3, 4, 5, 6];
+// console.log(a1, items);
+
+// const [seaweed, , edamame, ...otherFood] = [
+//   ...japaneseRestaurant.appetizers,
+//   ...japaneseRestaurant.mainMenu,
+// ];
+
+// console.log(seaweed, edamame, otherFood);
 
 // const arr = [1, 3, 5];
 
@@ -91,7 +130,6 @@ const japaneseRestaurant = {
 
 // console.log(japaneseRestaurantCopy.name);
 // console.log(japaneseRestaurant.name);
-
 
 // //////////////////////////////////////////////////
 
