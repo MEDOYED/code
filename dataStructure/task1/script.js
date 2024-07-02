@@ -41,7 +41,7 @@ const game = {
 
 // 1. Create separate arrays with players for each team (variables players1 and players2).
 
-const [players1, players2] = game.players
+const [players1, players2] = game.players;
 console.log(players1);
 console.log(players2);
 
@@ -60,11 +60,20 @@ console.log(allPlayers);
 
 // 4. REAL MADRID (team1) used 5 substitute players during the game. Create a new array (players1Total) containing all original players of team1 as well as ‘Marcelo’, 'Isco', 'Asensio', ‘Diaz' and 'Odriozola'.
 
-const players1Total = [...players1, 'Marcelo', 'Isco', 'Asensio', 'Diaz', 'Odrizola'];
+const players1Total = [
+  ...players1,
+  'Marcelo',
+  'Isco',
+  'Asensio',
+  'Diaz',
+  'Odrizola',
+];
 console.log(players1Total);
 
 // Based on the game.odds object, create one variable for each odd (called team1, draw and team2).
-const {team1, draw, team2} = game.odds;
+const {
+  odds: { team1, draw, team2 },
+} = game;
 console.log(team1);
 console.log(draw);
 console.log(team2);
@@ -73,10 +82,23 @@ console.log(team2);
 
 // 6. Функція запису printGoals, яка приймає довільну кількість імен гравців (НЕ масив) і виводить кожне з них на консоль разом із загальною кількістю забитих голів (кількість імен гравців, переданих у функцію).
 
+const printGoals = function (...gamePlayers) {
+  console.log(gamePlayers);
+  console.log(`${gamePlayers.length} goals scored`);
+};
 
+printGoals('Mingueza', 'Messi', 'Modrich', 'Nacho');
+printGoals(...game.scored);
+
+// scored: ['Kroos', 'Benzema', 'Mingueza'],
 
 // 7. The team with the lower odds will win more likely. Print to the console which team is more likely to win, WITHOUT using an if / else or ternary operator.
 // Test data for 6.: First use 'Mingueza', 'Messi', 'Modrich' and 'Nacho' players. Then call the function again with the players from game.scored.
 
 // 7. Команда з меншим коефіцієнтом виграє з більшою ймовірністю. Виведіть у консоль, яка команда має більше шансів на перемогу, БЕЗ використання операторів if / else або тернарних операторів.
 // Тестові дані для 6: Спочатку введіть гравців 'Mingueza', 'Messi', 'Modrich' та 'Nacho'. Потім викличте функцію ще раз з гравцями з game.scored.
+
+console.log(team1 || draw || team2);
+
+team1 < team2 && console.log(`${game.team1} is more likely to win!`);
+team1 > team2 && console.log(`${game.team2} is more likely to win!`);

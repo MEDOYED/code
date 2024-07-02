@@ -51,7 +51,9 @@ const japaneseRestaurant = {
   }
 };
 
-japaneseRestaurant.orderRamen('Colored Noodle', 'Meat', 'Chicken', 'Onion');
+console.log(0 && 'hello');
+
+// const guests = japaneseRestaurant.guestsNumber
 
 // //rest patern with objects
 // const { sat, sun, ...weekdays } = japaneseRestaurant.workingHours;
