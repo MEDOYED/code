@@ -1,5 +1,26 @@
 'use strict';
 
+const weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+const workingHours = {
+  [weekdays[2]]: {
+    open: 10,
+    close: 23,
+  },
+  [weekdays[4]]: {
+    open: 10,
+    close: 23,
+  },
+  [weekdays[5]]: {
+    open: 0,
+    close: 24,
+  },
+  [weekdays[6]]: {
+    open: 12,
+    close: 23,
+  },
+};
+
 const japaneseRestaurant = {
   name: 'Banzai',
   location: '108 Markham Woods Rd, Longwood, USA',
@@ -7,30 +28,13 @@ const japaneseRestaurant = {
   appetizers: ['Seaweed salad', 'Tempura shrimp', 'Edamame', 'Sushi rice'],
   mainMenu: ['Sushi', 'Ramen', 'Tempura'],
 
-  workingHours: {
-    wed: {
-      open: 10,
-      close: 23,
-    },
-    fri: {
-      open: 10,
-      close: 23,
-    },
-    sat: {
-      open: 0,
-      close: 24,
-    },
-    sun: {
-      open: 12,
-      close: 23,
-    },
-  },
+  workingHours,
 
-  orderFood: function (appetizersIndex, mainMenuIndex) {
+  orderFood(appetizersIndex, mainMenuIndex) {
     return [this.appetizers[appetizersIndex], this.mainMenu[mainMenuIndex]];
   },
 
-  foodDelivery: function ({
+  foodDelivery({
     mainMenuIndex = 0,
     appetizersIndex = 0,
     address,
@@ -41,17 +45,55 @@ const japaneseRestaurant = {
     );
   },
 
-  orderSushi: function (ing1, ing2, ing3) {
+  orderSushi(ing1, ing2, ing3) {
     console.log(`You are ordered sushi with ${ing1}, ${ing2}, ${ing3}`);
   },
 
-  orderRamen: function(noodle, ...otherIngs) {
+  orderRamen(noodle, ...otherIngs) {
     console.log(noodle);
     console.log(otherIngs);
-  }
+  },
 };
 
-console.log(0 && 'hello');
+console.log(japaneseRestaurant.workingHours?.thu?.open);
+
+const daysOfWeek = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+for (const day of daysOfWeek) {
+  const open = japaneseRestaurant.workingHours[day]?.open ?? 'never';
+  console.log(`On ${day} restourant opens at ${open}`);
+}
+
+//methods
+console.log(japaneseRestaurant.orderFood?.(1, 2) ?? 'Mothod does not exist');
+
+// arrays
+const posts = [
+  {
+    name: 'JS is cool!',
+    username: 'Ted',
+  },
+  {
+    name: 'JS is shit!',
+    username: 'Dick',
+  },
+];
+
+console.log(posts[0]?.name ?? 'The array is empty');
+console.log(posts[1]?.name ?? 'This post does not exist');
+console.log(posts[2]?.name ?? 'This post does not exist');
+
+// const menu = [...japaneseRestaurant.appetizers, ...japaneseRestaurant.mainMenu];
+
+// for (const food of menu) {
+//   console.log(food);
+// }
+
+// for (const [index, food] of menu.entries()) {
+//   console.log(`${food[0] + 1}. ${food[1]}`);
+// }
+
+// console.log([...menu.entries()]);
 
 // const guests = japaneseRestaurant.guestsNumber
 
