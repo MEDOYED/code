@@ -55,33 +55,57 @@ const japaneseRestaurant = {
   },
 };
 
-console.log(japaneseRestaurant.workingHours?.thu?.open);
+const props = Object.keys(workingHours);
+console.log(props);
+console.log(`"Banzai" opened ${props.length} days in a week`);
 
-const daysOfWeek = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-
-for (const day of daysOfWeek) {
-  const open = japaneseRestaurant.workingHours[day]?.open ?? 'never';
-  console.log(`On ${day} restourant opens at ${open}`);
+for (const day of props) {
+  console.log(day);
 }
 
-//methods
-console.log(japaneseRestaurant.orderFood?.(1, 2) ?? 'Mothod does not exist');
+const values = Object.values(workingHours);
+console.log(values);
 
-// arrays
-const posts = [
-  {
-    name: 'JS is cool!',
-    username: 'Ted',
-  },
-  {
-    name: 'JS is shit!',
-    username: 'Dick',
-  },
-];
+const entries = Object.entries(workingHours);
+console.log(entries);
 
-console.log(posts[0]?.name ?? 'The array is empty');
-console.log(posts[1]?.name ?? 'This post does not exist');
-console.log(posts[2]?.name ?? 'This post does not exist');
+for (const entry of entries) {
+  console.log(entry);
+}
+
+for (const [day, { open, close }] of entries) {
+  console.log(
+    `Restorant "Banzai" on ${day} opens at ${open} and closes at ${close}`
+  );
+}
+
+// console.log(japaneseRestaurant.workingHours?.thu?.open);
+
+// const daysOfWeek = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for (const day of daysOfWeek) {
+//   const open = japaneseRestaurant.workingHours[day]?.open ?? 'never';
+//   console.log(`On ${day} restourant opens at ${open}`);
+// }
+
+// //methods
+// console.log(japaneseRestaurant.orderFood?.(1, 2) ?? 'Mothod does not exist');
+
+// // arrays
+// const posts = [
+//   {
+//     name: 'JS is cool!',
+//     username: 'Ted',
+//   },
+//   {
+//     name: 'JS is shit!',
+//     username: 'Dick',
+//   },
+// ];
+
+// console.log(posts[0]?.name ?? 'The array is empty');
+// console.log(posts[1]?.name ?? 'This post does not exist');
+// console.log(posts[2]?.name ?? 'This post does not exist');
 
 // const menu = [...japaneseRestaurant.appetizers, ...japaneseRestaurant.mainMenu];
 
