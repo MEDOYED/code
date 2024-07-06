@@ -1,0 +1,20 @@
+@use 'importer' as s;
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1em;
+
+  border: {
+    width: 2px;
+    style: solid;
+    color: s.$main__color_6;
+    radius: 10px
+  };
+
+  .cards__wrapper {
+    width: 100%;
+    height: 100%;
+    @include s.d-flex(center, center, wrap);
+  }
+}

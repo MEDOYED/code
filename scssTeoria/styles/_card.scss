@@ -1,0 +1,49 @@
+@use 'variables' as v;
+@use 'mixins';
+
+.card {
+  border: {
+    width: 2px;
+    style: solid;
+    color: v.$main__color_6;
+    radius: 5px;
+  }
+  padding: 0.5em;
+  width: 300px;
+  transition: all .3s;
+
+  &__title {
+    margin: 0.3em;
+    text-transform: uppercase;
+    transition: all .3s;
+
+    &:hover {
+      cursor: pointer;
+      color: v.$main__color_3;
+    }
+  }
+
+  &__desc {
+    margin: 0.5em;
+    text-align: justify;
+  }
+
+  &__caption {
+    margin: 0.5em;
+    font-style: italic;
+  }
+
+  &:hover {
+    background-color: v.$main__color_2;
+  }
+
+  @media (max-width: v.$media_776) {
+    & {
+      flex-grow: 1;
+
+      &__title {
+        color: v.$main__color_6;  
+      }
+    }
+  }
+}
