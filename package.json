@@ -1,0 +1,22 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "scss learning",
+  "source": "index.html",
+  "scripts": {
+    "start": "sass --style=expanded --watch styles:public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MEDOYED/code.git"
+  },
+  "author": "Maksym Mokriakov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MEDOYED/code/issues"
+  },
+  "homepage": "https://github.com/MEDOYED/code#readme",
+  "dependencies": {
+    "sass": "^1.77.6"
+  }
+}
