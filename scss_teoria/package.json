@@ -1,0 +1,23 @@
+{
+  "name": "scss_teoria",
+  "version": "1.0.0",
+  "description": "sass teoria",
+  "source": "index.html",
+  "scripts": {
+    "start": "sass --style=compressed --watch styles:public",
+    "help": "sass --help"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MEDOYED/code.git"
+  },
+  "author": "Maksym Mokriakov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MEDOYED/code/issues"
+  },
+  "homepage": "https://github.com/MEDOYED/code#readme",
+  "dependencies": {
+    "sass": "^1.77.6"
+  }
+}
