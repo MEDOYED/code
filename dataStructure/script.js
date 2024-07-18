@@ -55,36 +55,72 @@ const japaneseRestaurant = {
   },
 };
 
-const restaurant = new Map();
-restaurant.set('name', 'Bench');
-restaurant.set(1, 'London, England');
-restaurant.set(2, 'Paris, France');
-console.log(restaurant.set(3, 'Kiev, Ukraine'));
+const question = new Map([
+  ['question', 'What is the most popular programming language for frontend?'],
+  [1, 'JavaScript'],
+  [2, 'Java'],
+  [3, 'Python'],
+  ['correctAnswer', 1],
+  [true, 'Correct answer'],
+  [false, 'Try again'],
+]);
 
-restaurant
-  .set('categories', ['Japanese', 'Sushi', 'Vegetarian', 'Organic'])
-  .set('open', 10)
-  .set('close', 23)
-  .set(true, 'Bench is open')
-  .set(false, 'Banch is closed');
+// console.log(question);
 
-console.log(restaurant.get('name'));
-console.log(restaurant.get(true));
-console.log(restaurant.get(3));
+console.log(Object.entries(workingHours));
+const workingHoursMap = new Map(Object.entries(workingHours));
+console.log(workingHoursMap);
 
-const currentTime = 22;
+// console.log(question.get('question'));
 
-console.log(
-  restaurant.get(
-    currentTime > restaurant.get('open') &&
-    currentTime < restaurant.get('close')
-  )
-);
+// for (const [key, value] of question) {
+//   if (typeof key === 'number') {
+//     console.log(`${key}: ${value}`);
+//   }
+// }
 
-console.log(restaurant.has(false));
-restaurant.delete(1)
-console.log(restaurant.get(1));
-console.log(restaurant.size);
+// const userAnswer = Number(prompt('Enter your answer'));
+// console.log(userAnswer);
+
+// console.log(question.get(question.get('correctAnswer') === userAnswer));
+
+
+// question.get(question.get('correctAnswer') === userAnswer);
+// if (answer = 1) {
+//   console.log(question.get(true));
+// } else {
+//   console.log(question.get(false));
+// }
+// const restaurant = new Map();
+// restaurant.set('name', 'Bench');
+// restaurant.set(1, 'London, England');
+// restaurant.set(2, 'Paris, France');
+// console.log(restaurant.set(3, 'Kiev, Ukraine'));
+
+// restaurant
+//   .set('categories', ['Japanese', 'Sushi', 'Vegetarian', 'Organic'])
+//   .set('open', 10)
+//   .set('close', 23)
+//   .set(true, 'Bench is open')
+//   .set(false, 'Banch is closed');
+
+// console.log(restaurant.get('name'));
+// console.log(restaurant.get(true));
+// console.log(restaurant.get(3));
+
+// const currentTime = 22;
+
+// console.log(
+//   restaurant.get(
+//     currentTime > restaurant.get('open') &&
+//     currentTime < restaurant.get('close')
+//   )
+// );
+
+// console.log(restaurant.has(false));
+// restaurant.delete(1)
+// console.log(restaurant.get(1));
+// console.log(restaurant.size);
 
 // const orders = new Set([
 //   'Sushi',
