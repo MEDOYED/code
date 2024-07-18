@@ -55,29 +55,91 @@ const japaneseRestaurant = {
   },
 };
 
-const props = Object.keys(workingHours);
-console.log(props);
-console.log(`"Banzai" opened ${props.length} days in a week`);
+const restaurant = new Map();
+restaurant.set('name', 'Bench');
+restaurant.set(1, 'London, England');
+restaurant.set(2, 'Paris, France');
+console.log(restaurant.set(3, 'Kiev, Ukraine'));
 
-for (const day of props) {
-  console.log(day);
-}
+restaurant
+  .set('categories', ['Japanese', 'Sushi', 'Vegetarian', 'Organic'])
+  .set('open', 10)
+  .set('close', 23)
+  .set(true, 'Bench is open')
+  .set(false, 'Banch is closed');
 
-const values = Object.values(workingHours);
-console.log(values);
+console.log(restaurant.get('name'));
+console.log(restaurant.get(true));
+console.log(restaurant.get(3));
 
-const entries = Object.entries(workingHours);
-console.log(entries);
+const currentTime = 22;
 
-for (const entry of entries) {
-  console.log(entry);
-}
+console.log(
+  restaurant.get(
+    currentTime > restaurant.get('open') &&
+    currentTime < restaurant.get('close')
+  )
+);
 
-for (const [day, { open, close }] of entries) {
-  console.log(
-    `Restorant "Banzai" on ${day} opens at ${open} and closes at ${close}`
-  );
-}
+console.log(restaurant.has(false));
+restaurant.delete(1)
+console.log(restaurant.get(1));
+console.log(restaurant.size);
+
+// const orders = new Set([
+//   'Sushi',
+//   'Ramen',
+//   'Sushi',
+//   'Tempura',
+//   'Ramen',
+//   'Sushi',
+// ]);
+
+// console.log(orders);
+
+// console.log(new Set ('Hello! '));
+// console.log(new Set ());
+// console.log(orders.size);
+// console.log(orders.has('Sushi'));
+// console.log(orders.has('Pizza'));
+// orders.add('Adamame');
+// orders.add('Adamame');
+// console.log(orders);
+
+// for (const order of  orders) {
+//   console.log(order);
+// }
+
+//Remove duplicates
+// const mealIngridients = ['Rise', 'Pepper', 'Garlic', 'Meat', 'Meat', 'Garlic'];
+// const mealIngridientsSet =  new Set(mealIngridients);
+// console.log(mealIngridientsSet);
+
+// console.log(new Set('mokriakov maksym').size);
+
+// const props = Object.keys(workingHours);
+// console.log(props);
+// console.log(`"Banzai" opened ${props.length} days in a week`);
+
+// for (const day of props) {
+//   console.log(day);
+// }
+
+// const values = Object.values(workingHours);
+// console.log(values);
+
+// const entries = Object.entries(workingHours);
+// console.log(entries);
+
+// for (const entry of entries) {
+//   console.log(entry);
+// }
+
+// for (const [day, { open, close }] of entries) {
+//   console.log(
+//     `Restorant "Banzai" on ${day} opens at ${open} and closes at ${close}`
+//   );
+// }
 
 // console.log(japaneseRestaurant.workingHours?.thu?.open);
 
