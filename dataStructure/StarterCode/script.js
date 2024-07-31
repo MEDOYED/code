@@ -55,6 +55,86 @@ const japaneseRestaurant = {
   },
 };
 
+const airline = 'SkyUp Airline';
+const airplane = 'Boeing 737';
+
+console.log(airplane[0]);
+console.log(airplane[1]);
+console.log(airplane[2]);
+console.log('SkyUp'[3]);
+
+console.log(airline.length);
+console.log('Boeing 737'.length);
+
+console.log(airplane.indexOf(' '));
+console.log(airplane.indexOf('7'));
+console.log(airplane.lastIndexOf('7'));
+console.log(airline.indexOf('Up'));
+
+console.log(airplane.slice(7));
+console.log(airplane.slice(0, 6));
+console.log(airline.slice(0, airplane.indexOf(' ')));
+console.log(airplane.slice(airplane.lastIndexOf(' ') + 1));
+
+console.log(airline.slice(-4));
+
+const checkMiddleSeat = function (seat) {
+  // B and E are middle seat
+  const seatLetter = seat.slice(-1);
+  if (seatLetter === 'B' || seatLetter === 'E') {
+    console.log('This is middle seat');
+  } else {
+    console.log('This is not a middle seat');
+  }
+};
+
+checkMiddleSeat('21A');
+checkMiddleSeat('7B');
+checkMiddleSeat('14E');
+
+const x = new String('Hello!!!');
+console.log(typeof x);
+
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+//Fix the passanger name
+const passengerName = 'liNDa';
+const passengerNameLower = passengerName.toLowerCase();
+const passengerNameFixed = passengerNameLower[0].toUpperCase() + passengerNameLower.slice(1);
+// console.log(passengerName.length);
+console.log(passengerNameFixed);
+
+
+// Email validation
+const email = 'someemail@gmail.com';
+const loginEmail = '  SomeEmail@Gmail.com \n';
+
+const emailLower = loginEmail.toLowerCase();
+const emailTrimmed = emailLower.trim();
+
+console.log(emailTrimmed);
+
+const emailNormalized = loginEmail.toLowerCase().trimStart();
+console.log(emailNormalized);
+
+console.log(email === emailNormalized);
+
+//replacing 
+const ticketPriceEU = '197,23*';
+const ticketPriceUS = ticketPriceEU.replace(',', '.').replace('*', '$');
+console.log(ticketPriceUS);
+
+const announcement = 'All passengers of flight EG234 come to boarding door 18. Boarding door 18!'
+
+console.log(announcement.replaceAll('door', 'goat'));
+
+console.log(airplane.includes('737'));
+
+console.log(airplane.startsWith('Bo'));
+console.log(airplane.endsWith('737')); 
+
+
 ////////////////////////////////////////////////
 // Task 4
 
