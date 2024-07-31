@@ -24,7 +24,7 @@ const events = new Map([
 
 
 // 1
-const gameEvents = new Set(events.values());
+const gameEvents = [...new Set(events.values())] ;
 console.log(gameEvents);
 
 // 2
@@ -37,16 +37,22 @@ const averageEvent = 90 / events.size;
 console.log(`On average, an event happened every ${averageEvent} minutes`);
 
 // 4
-const eventsKeys = events.keys();
-const eventsValues = events.values();
+// const eventsKeys = events.keys();
+// const eventsValues = events.values();
 
-events.forEach((value, key) => {
-  if (key < 45) {
-    console.log(`[FIRST HALF] ${key}, ${value}`);
-  } else {
-    console.log(`[SECOND HALF] ${key}, ${value}`);
-  }
-});
+// events.forEach((value, key) => {
+//   if (key < 45) {
+//     console.log(`[FIRST HALF] ${key}, ${value}`);
+//   } else {
+//     console.log(`[SECOND HALF] ${key}, ${value}`);
+//   }
+// });
+
+// second variation for 4
+for (const [key, value] of events) {
+  const half = key <= 45 ? 'FIRST' : 'SECOND';
+  console.log(`[${half} HALF] ${key}, ${value}`);
+}
 
 // const game = {
 //   team1: 'REAL MADRID',
