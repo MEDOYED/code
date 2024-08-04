@@ -1,0 +1,28 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 100px 100px;
+}
+
+.textarea {
+  resize: none;
+  max-width: 500px;
+  margin: 20px 0;
+}
+
+.btn-convert {
+  max-width: 500px;
+  margin: 20px 0;
+  height: 40px;
+}
+
+.input-list {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.input {
+  max-width: 500px;
+  min-width: 500px;
+  margin-bottom: 10px;
+}
