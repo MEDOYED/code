@@ -25,31 +25,72 @@ const survey = {
   question: 'What programming language would you like to learn?',
   options: ['0: JavaScript', '1: Python', '2: Ruby', '3: Java', '4: C#'],
   answers: new Array(5).fill(0),
+  logNewAnswer() {
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join('\n')}\n(Enter option number)`,
+      ),
+    );
+    // console.log(answer);
+
+    if (
+      typeof answer === 'number' &&
+      answer >= 0 &&
+      answer < this.answers.length
+    ) {
+      this.answers[answer]++;
+    }
+    // console.log(this.answers);
+    this.printResults();
+    this.printResults('string');
+  },
+
+  printResults(type = 'array') {
+    if (type === 'array') {
+      console.log(this.answers);
+    } else if (type === 'string') {
+      console.log(`Survey results: ${this.answers.join(', ')}.`);
+    }
+  },
 };
 
-const logNewAnswer = function () {
-  const userInput = prompt(`${survey.question} \n${survey.options.join('\n')}`);
-  
-  if (userInput == 0) {
-    survey.answers[0] += 1;
-  } else if (userInput == 1) {
-    survey.answers[1] += 1;
-  } else if (userInput == 2) {
-    survey.answers[2] += 1;
-  } else if (userInput == 3) {
-    survey.answers[3] += 1;
-  } else if (userInput == 4) {
-    survey.answers[4] += 1;
-  } else {
-    console.log('Incorect number');
-  }
-  console.log(survey.answers);
-};
+// survey.logNewAnswer();
+// survey.printResults('string')
 
-document.querySelector('.take-survey').addEventListener('click', function() {
-  logNewAnswer()
-});
+document
+  .querySelector('.take-survey')
+  .addEventListener('click', survey.logNewAnswer.bind(survey));
 
+// 5 понкт
 
+// Test Data:
+// 1.	[7, 1, 4]
+// 2.	[3, 6, 9, 2, 5, 4, 4]
 
+survey.printResults.call({ answers: [7, 1, 4] }, 'string');
+survey.printResults.call({ answers: [3, 6, 9, 2, 5, 4, 4] }, 'string');
+survey.printResults.call({ answers: [3, 6, 9, 2, 5, 4, 4] }, 'array');
+survey.printResults.call({ answers: [3, 6, 9, 2, 5, 4, 4] });
 
+// const logNewAnswer = function () {
+//   const userInput = prompt(`${survey.question} \n${survey.options.join('\n')}`);
+
+//   if (userInput == 0) {
+//     survey.answers[0] += 1;
+//   } else if (userInput == 1) {
+//     survey.answers[1] += 1;
+//   } else if (userInput == 2) {
+//     survey.answers[2] += 1;
+//   } else if (userInput == 3) {
+//     survey.answers[3] += 1;
+//   } else if (userInput == 4) {
+//     survey.answers[4] += 1;
+//   } else {
+//     console.log('Incorect number');
+//   }
+//   console.log(survey.answers);
+// };
+
+// document.querySelector('.take-survey').addEventListener('click', function() {
+//   logNewAnswer()
+// });
