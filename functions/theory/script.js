@@ -115,61 +115,121 @@
 //     flight: `${this.iataCode}${flightNumber}`,
 //     passengerName,
 //   });
+// // };
+
+// const airline1 = {
+//   airlineName: 'SkyUp',
+//   iataCode: 'SU',
+//   bookings: [],
+//   book(flightNumber, passengerName) {
+//     console.log(
+//       `${passengerName} has booked a ticket on ${this.airlineName} flight ${this.iataCode}${flightNumber}`,
+//     );
+//     this.bookings.push({
+//       flight: `${this.iataCode}${flightNumber}`,
+//       passengerName,
+//     });
+//   },
 // };
 
-const airline1 = {
-  airlineName: 'SkyUp',
-  iataCode: 'SU',
-  bookings: [],
-  book(flightNumber, passengerName) {
-    console.log(
-      `${passengerName} has booked a ticket on ${this.airlineName} flight ${this.iataCode}${flightNumber}`,
-    );
-    this.bookings.push({
-      flight: `${this.iataCode}${flightNumber}`,
-      passengerName,
-    });
-  },
-};
+// // airline1.book(346, 'Jim Green');
+// // airline1.book(635, 'Michael Jordan');
 
-// airline1.book(346, 'Jim Green');
-// airline1.book(635, 'Michael Jordan');
+// // console.log(airline1);
 
-// console.log(airline1);
+// const airline2 = {
+//   airlineName: 'EuroFlights',
+//   iataCode: 'EF',
+//   bookings: [],
+// };
 
-const airline2 = {
-  airlineName: 'EuroFlights',
-  iataCode: 'EF',
-  bookings: [],
-};
+// const book = airline1.book;
 
-const book = airline1.book;
+// // book(345, 'Linda Wiliams');
 
-// book(345, 'Linda Wiliams');
+// // book.call(airline2, 345, 'Linda Wilams');
+// // console.log(airline2);
 
-// book.call(airline2, 345, 'Linda Wilams');
+// // book.call(airline1, 123, 'Bob Smith');
+// // console.log(airline1);
+
+// const bookAirline2 = book.bind(airline2);
+// bookAirline2(45, 'John Doe');
 // console.log(airline2);
 
-// book.call(airline1, 123, 'Bob Smith');
-// console.log(airline1);
+// const airline3 = {
+//   airlineName: 'USFlights',
+//   iataCode: 'USF',
+//   bookings: [],
+// };
 
-const bookAirline2 = book.bind(airline2);
-bookAirline2(45, 'John Doe');
-console.log(airline2);
+// const bookAirline3 = book.bind(airline3);
+// bookAirline3(11, 'Marta Jonson');
+// console.log(airline3);
 
-const airline3 = {
-  airlineName: 'USFlights',
-  iataCode: 'USF',
-  bookings: [],
+// // Partial application
+// const getPersontage = (totalValue, value) => value / totalValue*100;
+// console.log(`${getPersontage(20, 23789)}%`);
+
+// const getPersontage23789 = getPersontage.bind(null, 23789);
+// console.log(getPersontage23789(100));
+
+// ===============================================
+
+// Immediately Invoked Function Expression (IIFE)
+// негайно викликаюмі функції (викликаються зразу і тільки 1 раз)
+
+// function expresion
+// (function () {
+//   console.log('You will never see this function call again.');
+//   const x = 1;
+// }) ();
+
+// arrow function
+// (() => console.log('You will never see this ARROW function call again.')) ();
+
+// =========================================================
+
+// Замикания (Closures)
+
+// const safeBooking = function () {
+//   let passangerCount = 0;
+
+//   return function () {
+//     passangerCount++;
+//     console.log(`${passangerCount} passengers`);
+//   };
+// };
+
+// const booker = safeBooking();
+
+// booker();
+// booker();
+// booker();
+
+// console.dir(booker);
+
+// ===================================================
+// more closers
+
+let f1;
+
+const f2 = function () {
+  const x = 11;
+  f1 = function () {
+    console.log(x ** 2);
+  };
 };
 
-const bookAirline3 = book.bind(airline3);
-bookAirline3(11, 'Marta Jonson');
-console.log(airline3);
+const f3 = function () {
+  const y = 12;
+  f1 = function () {
+    console.log(y ** 2);
+  };
+};
 
-// Partial application
-const getPersontage = (totalValue, value) => value / totalValue*100;
-console.log(`${getPersontage(20, 23789)}%`);
+f2();
+f1();
 
-const getPersontage23789 = getPersontage.bind(null, 23789);
-console.log(getPersontage23789(100));
+f3();
+f1();
