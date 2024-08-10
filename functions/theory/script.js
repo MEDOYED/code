@@ -212,24 +212,35 @@
 // ===================================================
 // more closers
 
-let f1;
+// let f1;
 
-const f2 = function () {
-  const x = 11;
-  f1 = function () {
-    console.log(x ** 2);
-  };
-};
+// const f2 = function () {
+//   const x = 11;
+//   f1 = function () {
+//     console.log(x ** 2);
+//   };
+// };
 
-const f3 = function () {
-  const y = 12;
-  f1 = function () {
-    console.log(y ** 2);
-  };
-};
+// const f3 = function () {
+//   const y = 12;
+//   f1 = function () {
+//     console.log(y ** 2);
+//   };
+// };
 
-f2();
-f1();
+// f2();
+// f1();
 
-f3();
-f1();
+// f3();
+// f1();
+
+// 1. В конце функции IIFE ниже прикрепите обработчик события, который меняет цвет выбранного элемента h2 на зелёный при каждом клике на элементе body. Не выбирайте элемент h2 снова!
+// 2. А теперь объясните себе (или кому-нибудь поблизости), почему это сработало? Не торопитесь. Подумайте, когда именно выполняется callback функция и что это означает для переменных, задействованных в этом примере.
+
+// (function () {
+//   const h2 = document.querySelector('h2');
+//   h2.style.color = 'orange';
+//   document.querySelector('body').addEventListener('click', function () {
+//     h2.style.color = 'green';
+//   });
+// })();
