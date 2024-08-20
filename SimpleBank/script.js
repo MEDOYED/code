@@ -114,7 +114,7 @@ console.log(accounts);
 
 const displayBalance = function (transactions) {
   const balance = transactions.reduce((acc, trans) => acc + trans, 0);
-  labelBalance.innerHTML = `${balance} $`
+  labelBalance.innerHTML = `${balance} $`;
 };
 
-displayBalance(account1.transactions)
+displayBalance(account1.transactions);
