@@ -87,15 +87,15 @@ displayTransactions(account1.transactions);
 
 // console.log(containerTransactions.innerHTML);
 
-const createNicknames = function(accs) {
-  accs.forEach(function(acc) {
+const createNicknames = function (accs) {
+  accs.forEach(function (acc) {
     acc.nickname = acc.userName
-    .toLowerCase()
-    .split(' ')
-    .map(word => word[0])
-    .join('');
-  })
-}
+      .toLowerCase()
+      .split(' ')
+      .map(word => word[0])
+      .join('');
+  });
+};
 
 createNicknames(accounts);
 console.log(accounts);
@@ -111,3 +111,10 @@ console.log(accounts);
 //   .join('');
 
 // console.log(nickname);
+
+const displayBalance = function (transactions) {
+  const balance = transactions.reduce((acc, trans) => acc + trans, 0);
+  labelBalance.innerHTML = `${balance} $`
+};
+
+displayBalance(account1.transactions)
