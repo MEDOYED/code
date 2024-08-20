@@ -65,14 +65,10 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayTransactions = function(transactions) {
-
+const displayTransactions = function (transactions) {
   containerTransactions.innerHTML = '';
-  
 
-  transactions.forEach(function(trans, index) {
-
-
+  transactions.forEach(function (trans, index) {
     const transType = trans > 0 ? 'deposit' : 'withdrawal';
 
     const transactionRow = `
@@ -82,11 +78,36 @@ const displayTransactions = function(transactions) {
           </div>
           <div class="transactions__value">${trans}</div>
         </div>
-        `
-        containerTransactions.insertAdjacentHTML('afterbegin', transactionRow)
+        `;
+    containerTransactions.insertAdjacentHTML('afterbegin', transactionRow);
   });
-}
+};
 
 displayTransactions(account1.transactions);
 
 // console.log(containerTransactions.innerHTML);
+
+const createNicknames = function(accs) {
+  accs.forEach(function(acc) {
+    acc.nickname = acc.userName
+    .toLowerCase()
+    .split(' ')
+    .map(word => word[0])
+    .join('');
+  })
+}
+
+createNicknames(accounts);
+console.log(accounts);
+
+// const userName = 'Oliver Avila'; // nickname = 'oa'
+// const nickname = userName
+//   .toLowerCase()
+//   .split(' ')
+//   // .map(function (word) {
+//   //   return word[0];
+//   // })
+//   .map(word => word[0])
+//   .join('');
+
+// console.log(nickname);
