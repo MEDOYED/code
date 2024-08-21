@@ -87,7 +87,7 @@
 
 // Method .reduce()
 
-const transactions = [500, 250, -300, 5000, -850, -110, -170, 1100];
+// const transactions = [500, 250, -300, 5000, -850, -110, -170, 1100];
 
 // const balance = transactions.reduce(function (acc, item, index, arr) {
 //   return acc + item;
@@ -117,10 +117,25 @@ const transactions = [500, 250, -300, 5000, -850, -110, -170, 1100];
 //   }
 // }, transactions[0]);
 
-const min = transactions.reduce(
-  (acc, trans) => (acc < trans ? acc : trans),
+// const min = transactions.reduce(
+//   (acc, trans) => (acc < trans ? acc : trans),
 
-  transactions[0],
-);
+//   transactions[0],
+// );
 
-console.log(min);
+// console.log(min);
+
+// =========================================================================================================================
+// =========================================================================================================================
+// =========================================================================================================================
+
+// method Chaining (цепь визовов)
+
+const transactions = [500, 250, -300, 5000, -850, -110, -170, 1100];
+
+const totalWithdrawlsEuro = transactions
+  .filter(trans => trans < 0)
+  .map(trans => trans * 0.86)
+  .reduce((acc, trans) => acc + trans, 0);
+
+console.log(totalWithdrawlsEuro);
