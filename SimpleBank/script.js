@@ -119,26 +119,55 @@ const displayBalance = function (transactions) {
 
 displayBalance(account1.transactions);
 
-const displayTotal = function (transactions) {
-  const depositesTotal = transactions
+const displayTotal = function (account) {
+  const depositesTotal = account.transactions
     .filter(trans => trans > 0)
     .reduce((acc, trans) => acc + trans, 0);
   labelSumIn.textContent = `${depositesTotal}$`;
 
-  const withdrawalTotal = transactions
+  const withdrawalTotal = account.transactions
     .filter(trans => trans < 0)
     .reduce((acc, trans) => acc + trans, 0);
   labelSumOut.textContent = `${withdrawalTotal}$`;
 
-  const interestTotal = transactions
+  const interestTotal = account.transactions
     .filter(trans => trans > 0)
-    .map(depos => (depos * 1.1) / 100)
+    .map(depos => (depos * account.interest) / 100)
     .filter((interest, index, arr) => {
-      console.log(arr);
-      return interest >= 5
-    }) 
+      // console.log(arr);
+      return interest >= 5;
+    })
     .reduce((acc, interest) => acc + interest, 0);
-  labelSumInterest.textContent = `${interestTotal}$`
+  labelSumInterest.textContent = `${interestTotal}$`;
 };
 
-displayTotal(account1.transactions);
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  const currentAccount = accounts.find(
+    account => account.nickname === inputLoginUsername.value
+  );
+  console.log(currentAccount);
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // DISPLAY UI
+    containerApp.style.opacity = 100;
+
+    labelWelcome.textContent = `Ради што ви сново с нами, ${
+      currentAccount.userName.split(' ')[0]
+    }!`;
+
+    // Clear inputs
+    inputLoginUsername.value = '';
+    inputLoginPin.value = '';
+    // inputLoginPin.blur();
+
+    // Display transaction
+    displayTransactions(currentAccount.transactions);
+
+    // Display balance
+    displayBalance(currentAccount.transactions);
+
+    // Display total
+    displayTotal(currentAccount);
+  }
+});
