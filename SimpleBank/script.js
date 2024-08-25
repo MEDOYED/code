@@ -112,12 +112,13 @@ console.log(accounts);
 
 // console.log(nickname);
 
-const displayBalance = function (transactions) {
-  const balance = transactions.reduce((acc, trans) => acc + trans, 0);
+const displayBalance = function (account) {
+  const balance = account.transactions.reduce((acc, trans) => acc + trans, 0);
+  account.balance = balance;
   labelBalance.innerHTML = `${balance} $`;
 };
 
-displayBalance(account1.transactions);
+// displayBalance(account1.transactions);
 
 const displayTotal = function (account) {
   const depositesTotal = account.transactions
@@ -141,9 +142,22 @@ const displayTotal = function (account) {
   labelSumInterest.textContent = `${interestTotal}$`;
 };
 
+const updateUi = function (account) {
+  // Display transaction
+  displayTransactions(account.transactions);
+
+  // Display balance
+  displayBalance(account);
+
+  // Display total
+  displayTotal(account);
+};
+
+let currentAccount;
+
 btnLogin.addEventListener('click', function (e) {
   e.preventDefault();
-  const currentAccount = accounts.find(
+  currentAccount = accounts.find(
     account => account.nickname === inputLoginUsername.value
   );
   console.log(currentAccount);
@@ -161,13 +175,29 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.value = '';
     // inputLoginPin.blur();
 
-    // Display transaction
-    displayTransactions(currentAccount.transactions);
+    updateUi(currentAccount);
+  }
+});
 
-    // Display balance
-    displayBalance(currentAccount.transactions);
+btnTransfer.addEventListener('click', function (e) {
+  e.preventDefault();
+  const transferAmount = Number(inputTransferAmount.value);
+  const recipientNickname = inputTransferTo.value;
+  const recipientAccount = accounts.find(
+    account => account.nickname === recipientNickname
+  );
 
-    // Display total
-    displayTotal(currentAccount);
+  inputTransferAmount.value = '';
+  inputTransferTo.value = '';
+
+  if (
+    transferAmount > 0 &&
+    currentAccount.balance >= transferAmount &&
+    recipientAccount &&
+    currentAccount.nickname !== recipientAccount.nickname
+  ) {
+    currentAccount.transactions.push(-transferAmount);
+    recipientAccount.transactions.push(transferAmount);
+    updateUi(currentAccount);
   }
 });
