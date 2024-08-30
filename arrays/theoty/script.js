@@ -53,22 +53,47 @@
 
 // Map
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['CNY', 'Chinese yuan'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['CNY', 'Chinese yuan'],
+// ]);
 
-currencies.forEach(function (value, key, map) {
-  console.log(key, value);
-});
+// currencies.forEach(function (value, key, map) {
+//   console.log(key, value);
+// });
 
-console.log('---------------------');
+// console.log('---------------------');
 
-// Set
-const uniqueCurrencies = new Set(['USD', 'EUR', 'CNY', 'CNY']);
-console.log(uniqueCurrencies);
-uniqueCurrencies.forEach(function (value, _, set) {
-  console.log(`${value}: ${value}`);
-  console.log(set);
-});
+// // Set
+// const uniqueCurrencies = new Set(['USD', 'EUR', 'CNY', 'CNY']);
+// console.log(uniqueCurrencies);
+// uniqueCurrencies.forEach(function (value, _, set) {
+//   console.log(`${value}: ${value}`);
+//   console.log(set);
+// });
+
+// ========================================================================================================================
+// ========================================================================================================================
+// ========================================================================================================================
+
+// Методи .some() && .every()
+
+const transactions = [300, 250, -500, 5000, -750, -180, 50, 1400, -350, -120];
+
+// console.log(transactions.includes(50));
+// console.log(transactions.includes(10));
+
+// .some()
+
+// const hasWithdrawals = transactions.some(trans => trans < 0);
+// console.log(hasWithdrawals);
+
+// const hasWithdrawalsOver5000 = transactions.some(trans => trans < -5000);
+// console.log(hasWithdrawalsOver5000);
+
+// .every()
+
+
+console.log(transactions.every(trans => trans < 0));
+console.log(transactions.every(trans => Math.abs(trans) > 20));
