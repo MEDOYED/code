@@ -227,18 +227,28 @@ btnClose.addEventListener('click', function (e) {
 
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
-  const loanAmountInput = inputLoanAmount.value;
-  const labelBalanceValue = Number(labelBalance.textContent.split(' ')[0]);
-
-  if (loanAmountInput > 0 && loanAmountInput / 10 <= labelBalanceValue) {
-    const labelBalanceValueAfter = Number(labelBalanceValue) + Number(loanAmountInput);
-    labelBalance.textContent = `${labelBalanceValueAfter} $`;
-    inputLoanAmount.style.border = "none";
-    inputLoanAmount.value = '';
-  } else {
-    inputLoanAmount.value = '';
-    inputLoanAmount.style.border = "2px solid red"; 
-
+  const loanAmount = Number(inputLoanAmount.value);
+  if (
+    loanAmount > 0 &&
+    currentAccount.transactions.some(trans => trans >= (loanAmount * 10) / 100)
+  ) {
+    currentAccount.transactions.push(loanAmount);
+    updateUi(currentAccount);
   }
-  
+
+  inputLoanAmount.value = '';
+
+  // const loanAmountInput = inputLoanAmount.value;
+  // const labelBalanceValue = Number(labelBalance.textContent.split(' ')[0]);
+
+  // if (loanAmountInput > 0 && loanAmountInput / 10 <= labelBalanceValue) {
+  //   const labelBalanceValueAfter =
+  //     Number(labelBalanceValue) + Number(loanAmountInput);
+  //   labelBalance.textContent = `${labelBalanceValueAfter} $`;
+  //   inputLoanAmount.style.border = 'none';
+  //   inputLoanAmount.value = '';
+  // } else {
+  //   inputLoanAmount.value = '';
+  //   inputLoanAmount.style.border = '2px solid red';
+  // }
 });
