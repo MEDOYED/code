@@ -65,10 +65,14 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseNickname = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
-const displayTransactions = function (transactions) {
+const displayTransactions = function (transactions, sort = false) {
   containerTransactions.innerHTML = '';
 
-  transactions.forEach(function (trans, index) {
+  const transacs = sort
+    ? transactions.slice().sort((x, y) => x - y)
+    : transactions;
+
+  transacs.forEach(function (trans, index) {
     const transType = trans > 0 ? 'deposit' : 'withdrawal';
 
     const transactionRow = `
@@ -83,7 +87,7 @@ const displayTransactions = function (transactions) {
   });
 };
 
-displayTransactions(account1.transactions);
+// displayTransactions(account1.transactions);
 
 // console.log(containerTransactions.innerHTML);
 
@@ -237,18 +241,12 @@ btnLoan.addEventListener('click', function (e) {
   }
 
   inputLoanAmount.value = '';
+});
 
-  // const loanAmountInput = inputLoanAmount.value;
-  // const labelBalanceValue = Number(labelBalance.textContent.split(' ')[0]);
+let transactionsSorted = false;
 
-  // if (loanAmountInput > 0 && loanAmountInput / 10 <= labelBalanceValue) {
-  //   const labelBalanceValueAfter =
-  //     Number(labelBalanceValue) + Number(loanAmountInput);
-  //   labelBalance.textContent = `${labelBalanceValueAfter} $`;
-  //   inputLoanAmount.style.border = 'none';
-  //   inputLoanAmount.value = '';
-  // } else {
-  //   inputLoanAmount.value = '';
-  //   inputLoanAmount.style.border = '2px solid red';
-  // }
+btnSort.addEventListener('click', function () {
+  // e.preventDefault();
+  displayTransactions(currentAccount.transactions, !transactionsSorted);
+  transactionsSorted = !transactionsSorted;
 });
