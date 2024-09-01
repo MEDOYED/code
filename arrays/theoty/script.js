@@ -184,13 +184,15 @@
 
 const transactions = [300, 250, -500, 5000, -750, -180, 50, 1400, -350, -120];
 
-transactions.sort((x, y) => {
-  if (x > y) {
-    return 1;
-  }
-  if (x < y) {
-    return -1;
-  }
-});
+// transactions.sort((x, y) => {
+//   if (x > y) {
+//     return 1;
+//   }
+//   if (x < y) {
+//     return -1;
+//   }
+// });
+
+transactions.sort((x, y) => y - x);
 
 console.log(transactions);
