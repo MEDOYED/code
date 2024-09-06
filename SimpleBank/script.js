@@ -250,3 +250,13 @@ btnSort.addEventListener('click', function () {
   displayTransactions(currentAccount.transactions, !transactionsSorted);
   transactionsSorted = !transactionsSorted;
 });
+
+// Array.from() example
+const logoImage = document.querySelector('.logo')
+
+logoImage.addEventListener('click', function() {
+  const transactionsUi = document.querySelectorAll('.transactions__value');
+  console.log(transactionsUi);
+  const transactionUiArray = Array.from(transactionsUi);
+  console.log(transactionUiArray.map(elem => Number(elem.textContent)));
+})
