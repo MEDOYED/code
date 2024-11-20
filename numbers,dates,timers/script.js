@@ -25,3 +25,28 @@ console.log(Number.isFinite(11 / 0)); // false (тому що це число б
 console.log('-----------');
 // перевічка чи є число NaN
 console.log(Number.isNaN(Number.parseInt('r20'))); // true
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+console.log('183. Робота с Math');
+
+console.log(Math.sqrt(9)); // 3  (корінь квадратний)
+console.log(9 ** 2);
+
+console.log(Math.max(1, 3, 66, '70', 40, '50')); // 70
+console.log(Math.min(1, 3, 66, '70', 40, '50')); // 1
+
+console.log(Math.PI);
+console.log(Math.PI * Number.parseInt('20px') ** 2);
+
+console.log(Math.random()); // рфндомне число вод 0 до 1
+console.log(Math.trunc(Math.random() * 100)); // рандомне ціле число від 0 до 100
+console.log(Math.trunc(1.99)); // 1  (обрізає десятчний дроб)
+console.log(Math.round(1.99)); // 2  (заокруглює нормально)
+
+console.log(Math.ceil(1.99)); // 2  (заокруглює в більшу сторону)
+console.log(Math.ceil(1.39)); // 2  (заокруглює в більшу сторону)
+
+console.log(Math.floor(1.39)); // 1  (заокруглює в меншу сторону)
+console.log(Math.floor(1.99)); // 1  (заокруглює в меншу сторону)
+
+console.log(Math.PI.toFixed(2)); // залишаєм 2 знаки після коми
