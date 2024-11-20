@@ -4,7 +4,7 @@
 
 const account1 = {
   userName: 'Cecil Ireland',
-  transactions: [500, 250, -300, 5000, -850, -110, -170, 1100],
+  transactions: [400, 350, -300, 5000, -850, -110, -170, 1100],
   interest: 1.5,
   pin: 1111,
 };
@@ -252,11 +252,11 @@ btnSort.addEventListener('click', function () {
 });
 
 // Array.from() example
-const logoImage = document.querySelector('.logo')
+const logoImage = document.querySelector('.logo');
 
-logoImage.addEventListener('click', function() {
+logoImage.addEventListener('click', function () {
   const transactionsUi = document.querySelectorAll('.transactions__value');
   console.log(transactionsUi);
   const transactionUiArray = Array.from(transactionsUi);
   console.log(transactionUiArray.map(elem => Number(elem.textContent)));
-})
+});
