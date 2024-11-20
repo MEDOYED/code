@@ -11,7 +11,7 @@ const account1 = {
 
 const account2 = {
   userName: 'Amani Salt',
-  transactions: [2000, 6400, -1350, -70, -210, -2000, 5500, -30],
+  transactions: [2000.25, 6400, -1350, -70, -210.31, -2000, 5500.79, -30],
   interest: 1.3,
   pin: 2222,
 };
@@ -80,7 +80,7 @@ const displayTransactions = function (transactions, sort = false) {
           <div class="transactions__type transactions__type--${transType}">
             ${index + 1} ${transType}
           </div>
-          <div class="transactions__value">${trans}</div>
+          <div class="transactions__value">${trans.toFixed(2)}</div>
         </div>
         `;
     containerTransactions.insertAdjacentHTML('afterbegin', transactionRow);
@@ -119,7 +119,7 @@ console.log(accounts);
 const displayBalance = function (account) {
   const balance = account.transactions.reduce((acc, trans) => acc + trans, 0);
   account.balance = balance;
-  labelBalance.innerHTML = `${balance} $`;
+  labelBalance.innerHTML = `${balance.toFixed(2)} $`;
 };
 
 // displayBalance(account1.transactions);
@@ -128,12 +128,12 @@ const displayTotal = function (account) {
   const depositesTotal = account.transactions
     .filter(trans => trans > 0)
     .reduce((acc, trans) => acc + trans, 0);
-  labelSumIn.textContent = `${depositesTotal}$`;
+  labelSumIn.textContent = `${depositesTotal.toFixed(2)}$`;
 
   const withdrawalTotal = account.transactions
     .filter(trans => trans < 0)
     .reduce((acc, trans) => acc + trans, 0);
-  labelSumOut.textContent = `${withdrawalTotal}$`;
+  labelSumOut.textContent = `${withdrawalTotal.toFixed(2)}$`;
 
   const interestTotal = account.transactions
     .filter(trans => trans > 0)
@@ -143,7 +143,7 @@ const displayTotal = function (account) {
       return interest >= 5;
     })
     .reduce((acc, interest) => acc + interest, 0);
-  labelSumInterest.textContent = `${interestTotal}$`;
+  labelSumInterest.textContent = `${interestTotal.toFixed(2)}$`;
 };
 
 const updateUi = function (account) {
@@ -168,7 +168,7 @@ btnLogin.addEventListener('click', function (e) {
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +inputLoginPin.value) {
     // DISPLAY UI
     containerApp.style.opacity = 100;
 
@@ -187,7 +187,7 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
-  const transferAmount = Number(inputTransferAmount.value);
+  const transferAmount = +inputTransferAmount.value;
   const recipientNickname = inputTransferTo.value;
   const recipientAccount = accounts.find(
     account => account.nickname === recipientNickname
@@ -212,7 +212,7 @@ btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   if (
     inputCloseNickname.value === currentAccount.nickname &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +inputClosePin.value === currentAccount.pin
   ) {
     const currentAccountIndex = accounts.findIndex(
       account => account.nickname === currentAccount.nickname
@@ -231,7 +231,7 @@ btnClose.addEventListener('click', function (e) {
 
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault();
-  const loanAmount = Number(inputLoanAmount.value);
+  const loanAmount = Math.floor(inputLoanAmount.value);
   if (
     loanAmount > 0 &&
     currentAccount.transactions.some(trans => trans >= (loanAmount * 10) / 100)
@@ -258,5 +258,5 @@ logoImage.addEventListener('click', function () {
   const transactionsUi = document.querySelectorAll('.transactions__value');
   console.log(transactionsUi);
   const transactionUiArray = Array.from(transactionsUi);
-  console.log(transactionUiArray.map(elem => Number(elem.textContent)));
+  console.log(transactionUiArray.map(elem => +elem.textContent));
 });
