@@ -63,3 +63,24 @@ console.log(isNumberOdd(10));
 console.log(isNumberOdd(9));
 console.log(isNumberOdd(98));
 console.log(isNumberOdd(1));
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//BigIng
+
+console.log('------------');
+
+console.log(2 ** 53 - 1); //9007199254740991
+console.log(Number.MAX_SAFE_INTEGER); //9007199254740991
+
+console.log(435279247624692562045863274256208n);
+
+console.log(
+  435279247624692562045863274256208n * 435279247624692562045863274256208n,
+);
+
+const bigNumber = 435279247624692562045863274256208n;
+const regulalNumber = 123;
+
+console.log(bigNumber + BigInt(regulalNumber));
+
+console.log(435279247624692562045863274256208n > 12); // true
