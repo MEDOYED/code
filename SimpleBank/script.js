@@ -65,6 +65,8 @@ const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseNickname = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
 
+const row = document.querySelector('.transactions__row');
+
 const displayTransactions = function (transactions, sort = false) {
   containerTransactions.innerHTML = '';
 
@@ -252,11 +254,24 @@ btnSort.addEventListener('click', function () {
 });
 
 // Array.from() example
-const logoImage = document.querySelector('.logo');
+// const logoImage = document.querySelector('.logo');
 
-logoImage.addEventListener('click', function () {
-  const transactionsUi = document.querySelectorAll('.transactions__value');
-  console.log(transactionsUi);
-  const transactionUiArray = Array.from(transactionsUi);
-  console.log(transactionUiArray.map(elem => +elem.textContent));
-});
+// logoImage.addEventListener('click', function () {
+//   const transactionsUi = document.querySelectorAll('.transactions__value');
+//   console.log(transactionsUi);
+//   const transactionUiArray = Array.from(transactionsUi);
+//   console.log(transactionUiArray.map(elem => +elem.textContent));
+// });
+
+// const logoImage = document.querySelector('.logo');
+
+// logoImage.addEventListener('click', function () {
+//   [...document.querySelectorAll('.transactions__row')].forEach(function (
+//     row,
+//     i
+//   ) {
+//     if (i % 2 === 0) {
+//       row.style.backgroundColor = 'grey';
+//     }
+//   });
+// });
