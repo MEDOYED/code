@@ -50,3 +50,16 @@ console.log(Math.floor(1.39)); // 1  (заокруглює в меншу сто�
 console.log(Math.floor(1.99)); // 1  (заокруглює в меншу сторону)
 
 console.log(Math.PI.toFixed(2)); // залишаєм 2 знаки після коми
+
+// Оператор залишку
+
+console.log(7 % 3); // 7 / 3 = 2 в ціломі і 1 в залишку. Тому в консолі буде 1
+console.log(7 % 4); // В консолі буде 3
+console.log(8 % 4); // В консолі буде 3
+
+const isNumberOdd = x => x % 2 != 0;
+
+console.log(isNumberOdd(10));
+console.log(isNumberOdd(9));
+console.log(isNumberOdd(98));
+console.log(isNumberOdd(1));
