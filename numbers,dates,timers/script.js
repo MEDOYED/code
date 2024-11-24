@@ -84,3 +84,40 @@ const regulalNumber = 123;
 console.log(bigNumber + BigInt(regulalNumber));
 
 console.log(435279247624692562045863274256208n > 12); // true
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// робота з датами
+
+const now = new Date();
+
+console.log(now);
+
+const someDateString = 'Nov 24 2024 15:06:54';
+const someDate = new Date(someDateString);
+console.log(someDate);
+
+console.log('-----------');
+
+// Unix time started Jan 1 1970
+console.log(new Date(0)); // Thu Jan 01 1970 01:00:00 GMT+0100 (Central European Standard Time)
+
+console.log('-----------');
+
+const futureDate = new Date(2222, 1, 13, 11, 28, 59);
+console.log(futureDate);
+
+console.log(futureDate.getFullYear()); // 2222
+console.log(futureDate.getMonth()); // 1
+console.log(futureDate.getDate()); // 13
+console.log(futureDate.getDay()); // 3
+console.log(futureDate.getHours()); // 11
+console.log(futureDate.getMinutes()); // 28
+console.log(futureDate.getSeconds()); // 59
+
+console.log(futureDate.toISOString()); // 2222-02-13T10:28:59.000Z  || z=відображає значення як строчку
+console.log(futureDate.getTime()); // 7956095339000  ||  скільки мілесекунд пройшло від моменту відліку
+console.log(new Date(7956095339000)); // Wed Feb 13 2222 11:28:59 GMT+0100 (Central European Standard Time)
+
+futureDate.setFullYear(2223);
+console.log(futureDate);
