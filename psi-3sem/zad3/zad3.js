@@ -1,28 +1,61 @@
-var training = [];
-var ptron;
+let training = [];
+let ptron;
 
-var count = 0;
+let count = 0;
 
-var xmin = -400;
-var ymin = -100;
-var xmax = 400;
-var ymax = 100;
+const xmin = -400;
+const ymin = -100;
+const xmax = 400;
+const ymax = 100;
 
 function f(x) {
-  return 0.4 * x + 1;
+  return 0.5 * x + 1;
 }
 
 function setup() {
-  createCanvas(640, 360);
+  createCanvas(700, 700);
+  frameRate(60);
 
-  ptron = new Perceptron(3, 0.00001);
+  ptron = new Perceptron(3, 0.0001);
 
-  for (var i = 0; i < 2000; i++) {
-    var x = random(xmin, xmax);
-    var y = random(ymin, ymax);
-    var answer = 1;
-    if (y < f(x)) answer = -1;
+  for (let i = 0; i < 2000; i++) {
+    const x = random(xmin, xmax);
+    const y = random(ymin, ymax);
+    const answer = y < f(x) ? -1 : 1;
     training.push(new Trainer(x, y, answer));
+  }
+}
+
+function drawTargetLine() {
+  strokeWeight(4);
+  stroke(100);
+  const x1 = xmin;
+  const y1 = f(x1);
+  const x2 = xmax;
+  const y2 = f(x2);
+  line(x1, y1, x2, y2);
+}
+
+function drawPerceptronLine() {
+  stroke(0);
+  strokeWeight(1);
+  const weights = ptron.weights;
+  const x1 = xmin;
+  const y1 = (-weights[2] - weights[0] * x1) / weights[1];
+  const x2 = xmax;
+  const y2 = (-weights[2] - weights[0] * x2) / weights[1];
+  line(x1, y1, x2, y2);
+}
+
+function drawPoints() {
+  for (let i = 0; i < count; i++) {
+    stroke(0);
+    strokeWeight(1);
+    fill(0);
+    const guess = ptron.feedforward(training[i].inputs);
+    if (guess > 0) noFill();
+
+    ellipse(training[i].inputs[0], training[i].inputs[1], 8, 8);
   }
 }
 
@@ -30,70 +63,42 @@ function draw() {
   background(255);
   translate(width / 2, height / 2);
 
-  strokeWeight(4);
-  stroke(127);
-  var x1 = xmin;
-  var y1 = f(x1);
-  var x2 = xmax;
-  var y2 = f(x2);
-  line(x1, y1, x2, y2);
-
-  stroke(0);
-  strokeWeight(1);
-  var weights = ptron.weights;
-  x1 = xmin;
-  y1 = (-weights[2] - weights[0] * x1) / weights[1];
-  x2 = xmax;
-  y2 = (-weights[2] - weights[0] * x2) / weights[1];
-  line(x1, y1, x2, y2);
+  drawTargetLine();
+  drawPerceptronLine();
 
   ptron.train(training[count].inputs, training[count].answer);
   count = (count + 1) % training.length;
 
-  for (var i = 0; i < count; i++) {
-    stroke(0);
-    strokeWeight(1);
-    fill(0);
-    var guess = ptron.feedforward(training[i].inputs);
-    if (guess > 0) noFill();
-
-    ellipse(training[i].inputs[0], training[i].inputs[1], 8, 8);
-  }
+  drawPoints();
 }
 
-function Perceptron(n, c) {
-  this.weights = [];
-  for (var i = 0; i < n; i++) {
-    this.weights[i] = random(-1, 1);
+class Perceptron {
+  constructor(n, c) {
+    this.weights = Array.from({ length: n }, () => random(-1, 1));
+    this.c = c;
   }
-  this.c = c;
 
-  this.train = function (inputs, desired) {
-    var guess = this.feedforward(inputs);
-    var error = desired - guess;
-    for (var i = 0; i < this.weights.length; i++) {
+  train(inputs, desired) {
+    const guess = this.feedforward(inputs);
+    const error = desired - guess;
+    for (let i = 0; i < this.weights.length; i++) {
       this.weights[i] += this.c * error * inputs[i];
     }
-  };
+  }
 
-  this.feedforward = function (inputs) {
-    var sum = 0;
-    for (var i = 0; i < this.weights.length; i++) {
-      sum += inputs[i] * this.weights[i];
-    }
+  feedforward(inputs) {
+    const sum = inputs.reduce((acc, val, i) => acc + val * this.weights[i], 0);
     return this.activate(sum);
-  };
+  }
 
-  this.activate = function (sum) {
-    if (sum > 0) return 1;
-    else return -1;
-  };
+  activate(sum) {
+    return sum > 0 ? 1 : -1;
+  }
 }
 
-function Trainer(x, y, a) {
-  this.inputs = [];
-  this.inputs[0] = x;
-  this.inputs[1] = y;
-  this.inputs[2] = 1;
-  this.answer = a;
+class Trainer {
+  constructor(x, y, answer) {
+    this.inputs = [x, y, 1];
+    this.answer = answer;
+  }
 }
