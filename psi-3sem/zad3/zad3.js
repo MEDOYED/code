@@ -1,19 +1,20 @@
+const canvasSize = 700;
 let training = [];
 let ptron;
 
 let count = 0;
 
-const xmin = -400;
-const ymin = -100;
-const xmax = 400;
-const ymax = 100;
+const xmin = -canvasSize / 2;
+const ymin = -canvasSize / 2;
+const xmax = canvasSize / 2;
+const ymax = canvasSize / 2;
 
 function f(x) {
-  return 0.5 * x + 1;
+  return 0.5 * x;
 }
 
 function setup() {
-  createCanvas(700, 700);
+  createCanvas(canvasSize, canvasSize);
   frameRate(60);
 
   ptron = new Perceptron(3, 0.0001);
