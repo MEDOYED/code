@@ -1,6 +1,7 @@
 'use strict';
 
 const Person = function (firstName, birthYear) {
+  // Instance properties - свойства екземпляра - властивості екземпляру
   this.firstName = firstName;
   this.birthYear = birthYear;
 };
