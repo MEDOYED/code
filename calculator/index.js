@@ -53,8 +53,11 @@ buttons.forEach(button => {
 
 //equal
 equal.addEventListener('click', () => {
-  input.textContent = eval(input.textContent);
+  input.textContent = eval(input.textContent).toPrecision(5) + '...';
 
+  input.textContent = parseFloat(input.textContent);
+
+  console.log(input.textContent.length);
   if (eval(input.textContent) === Infinity) {
     const errorDivisionByZero = 'Помилка';
     input.textContent = errorDivisionByZero;
